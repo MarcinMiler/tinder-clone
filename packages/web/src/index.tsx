@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from 'styled-components'
 
-import { GlobalStyle, theme } from './Theme'
+import { GlobalStyle, theme } from '@tinder/components'
 import { Routes } from './Routes'
 import * as serviceWorker from './serviceWorker'
 
