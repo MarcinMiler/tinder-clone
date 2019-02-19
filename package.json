@@ -7,5 +7,8 @@
     },
     "devDependencies": {
         "lerna": "3.13.0"
+    },
+    "scripts": {
+        "build:web": "lerna run build --scope={@tinder/components,@tinder/web}"
     }
 }
