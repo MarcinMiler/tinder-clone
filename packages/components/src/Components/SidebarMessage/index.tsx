@@ -9,7 +9,7 @@ interface Props {
     message: string
 }
 
-export const Pair: React.FC<Props> = ({ url, notificationDot, message }) => (
+export const SidebarMessage: React.FC<Props> = ({ url, notificationDot, message }) => (
     <Container>
         <Avatar size={80} url={url} notificationDot={notificationDot} />
 
