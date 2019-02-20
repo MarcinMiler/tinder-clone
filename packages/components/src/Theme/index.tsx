@@ -18,6 +18,15 @@ export const GlobalStyle = createGlobalStyle`
     p {
         margin: 0;
     }
+
+    input {
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+
+        &:focus {
+            outline: none;
+        }
+    }
 `
 
 interface Theme {
