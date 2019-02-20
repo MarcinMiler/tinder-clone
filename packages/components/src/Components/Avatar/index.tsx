@@ -1,16 +1,15 @@
-import styled from 'styled-components'
+import * as React from 'react'
 
-interface AvatarProps {
+import { Container, NotificationDot } from './style'
+
+interface Props {
+    notificationDot?: boolean
     size: number
     url: string
 }
 
-export const Avatar = styled.div<AvatarProps>`
-    width: ${({ size }) => size + 'px'};
-    height: ${({ size }) => size + 'px'};
-    border-radius: 50%;
-    border: 2px solid white;
-    background: ${({ url }) => `url(${url})`};
-    background-size: cover;
-    background-position: center;
-`
+export const Avatar: React.FC<Props> = ({ size, url, notificationDot }) => (
+    <Container url={url} size={size}>
+        {notificationDot && <NotificationDot parentSize={size} />}
+    </Container>
+)
