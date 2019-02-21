@@ -11,6 +11,7 @@
         "react-dom": "^16.8.2",
         "react-router-dom": "^4.3.1",
         "react-scripts": "2.1.5",
+        "react-virtualized": "^9.21.0",
         "styled-components": "^4.1.3",
         "typescript": "3.3.3"
     },
@@ -31,6 +32,7 @@
     ],
     "devDependencies": {
         "@types/react-router-dom": "^4.3.1",
+        "@types/react-virtualized": "^9.18.12",
         "@types/styled-components": "^4.1.10"
     }
 }
