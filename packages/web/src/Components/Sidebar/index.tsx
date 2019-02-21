@@ -11,24 +11,11 @@ const url =
 const message = 'Hey! You look sweet!'
 
 export const Sidebar: React.FC<Props> = () => {
-    const _rowRenderer = ({ index, isScrolling, key, style }: any) => {
-        // if (isScrolling) {
-        //     return (
-        //         <div key={key} style={style}>
-        //             scrolling...
-        //         </div>
-        //     )
-        // }
-
-        return (
-            //   <div key={key} className={styles.row} style={style}>
-            //     {row.name}
-            //   </div>
-            <div key={key} style={style}>
-                <SidebarMessage url={url} message={message} />
-            </div>
-        )
-    }
+    const messagesList = ({ key, style }: any) => (
+        <div key={key} style={style}>
+            <SidebarMessage url={url} message={message} />
+        </div>
+    )
 
     return (
         <Container>
@@ -56,7 +43,7 @@ export const Sidebar: React.FC<Props> = () => {
                             height={height}
                             rowCount={20}
                             rowHeight={100}
-                            rowRenderer={_rowRenderer}
+                            rowRenderer={messagesList}
                             width={380}
                         />
                     )}
