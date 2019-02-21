@@ -27,6 +27,27 @@ export const GlobalStyle = createGlobalStyle`
             outline: none;
         }
     }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #efefef;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #ff506b; 
+        border-radius: 25px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ff1d40; 
+    }
 `
 
 interface Theme {

@@ -1,2 +1,7 @@
 export * from './Components/SidebarHeader'
+export * from './Components/Avatar'
+export * from './Components/SearchInput'
+export * from './Components/SidebarLikesCounter'
+export * from './Components/SidebarMessage'
+export * from './Components/SidebarPair'
 export * from './Theme'

@@ -5,7 +5,8 @@ interface ImgProps {
 }
 
 export const Container = styled.div`
-    width: 120px;
+    width: 84px;
+    margin-right: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,8 +14,8 @@ export const Container = styled.div`
 export const Text = styled.div`
     margin-top: 6px;
     color: black;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 14px;
     text-align: center;
 `
 export const Relative = styled.div`

@@ -1,3 +1,5 @@
 import * as React from 'react'
 
-export const App = () => <div>App page</div>
+import { Sidebar } from '../../Components/Sidebar'
+
+export const App = () => <Sidebar />
