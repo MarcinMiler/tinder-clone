@@ -1,5 +1,14 @@
 type Query {
     user: User
+    users: [User]
+}
+
+type Mutation {
+    register(input: RegisterInput!): String
+}
+
+input RegisterInput {
+    name: String!
 }
 
 type User {
