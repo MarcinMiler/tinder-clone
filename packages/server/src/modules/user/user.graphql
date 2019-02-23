@@ -4,7 +4,7 @@ type Query {
 }
 
 type Mutation {
-    login(input: LoginInput!): Boolean
+    login(input: LoginInput!): String
     register(input: RegisterInput!): Boolean
 }
 

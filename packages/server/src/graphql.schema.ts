@@ -15,7 +15,7 @@ export abstract class RegisterInput {
 }
 
 export abstract class IMutation {
-    abstract login(input: LoginInput): boolean | Promise<boolean>;
+    abstract login(input: LoginInput): string | Promise<string>;
 
     abstract register(input: RegisterInput): boolean | Promise<boolean>;
 }

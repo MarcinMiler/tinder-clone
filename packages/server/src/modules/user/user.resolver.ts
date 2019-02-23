@@ -10,7 +10,7 @@ export class UserResolver {
 
     @Query('user')
     getUser() {
-        return this.userService.getById('1')
+        return this.userService.getById(1)
     }
 
     @Query('users')

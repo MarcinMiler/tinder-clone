@@ -4,10 +4,12 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { join } from 'path'
 
 import { UserModule } from './modules/user/user.module'
+import { AuthModule } from './modules/auth/auth.module'
 
 @Module({
     imports: [
         UserModule,
+        AuthModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
             host: 'localhost',
