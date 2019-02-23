@@ -1,10 +1,23 @@
 /* tslint:disable */
+export abstract class LoginInput {
+    email: string;
+    password: string;
+}
+
 export abstract class RegisterInput {
-    name: string;
+    email: string;
+    password: string;
+    username: string;
+    age: number;
+    job?: string;
+    education?: string;
+    description?: string;
 }
 
 export abstract class IMutation {
-    abstract register(input: RegisterInput): string | Promise<string>;
+    abstract login(input: LoginInput): boolean | Promise<boolean>;
+
+    abstract register(input: RegisterInput): boolean | Promise<boolean>;
 }
 
 export abstract class IQuery {
@@ -16,6 +29,10 @@ export abstract class IQuery {
 }
 
 export abstract class User {
-    id: string;
-    name: string;
+    id: number;
+    username: string;
+    age: number;
+    job?: string;
+    education?: string;
+    description?: string;
 }

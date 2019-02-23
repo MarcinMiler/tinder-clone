@@ -4,14 +4,30 @@ type Query {
 }
 
 type Mutation {
-    register(input: RegisterInput!): String
+    login(input: LoginInput!): Boolean
+    register(input: RegisterInput!): Boolean
 }
 
 input RegisterInput {
-    name: String!
+    email: String!
+    password: String!
+    username: String!
+    age: Int!
+    job: String
+    education: String
+    description: String
+}
+
+input LoginInput {
+    email: String!
+    password: String!
 }
 
 type User {
-    id: ID!
-    name: String!
+    id: Int!
+    username: String!
+    age: Int!
+    job: String
+    education: String
+    description: String
 }
