@@ -5,11 +5,13 @@ import { join } from 'path'
 
 import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module'
+import { LikeModule } from './modules/like/like.module'
 
 @Module({
     imports: [
         UserModule,
         AuthModule,
+        LikeModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
             host: 'localhost',

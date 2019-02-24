@@ -1,0 +1,8 @@
+type Mutation {
+    like(input: LikeInput!): ID
+}
+
+input LikeInput {
+    userId: ID!
+    toUserId: ID!
+}

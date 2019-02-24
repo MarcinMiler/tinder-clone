@@ -1,4 +1,9 @@
 /* tslint:disable */
+export abstract class LikeInput {
+    userId: string;
+    toUserId: string;
+}
+
 export abstract class LoginInput {
     email: string;
     password: string;
@@ -15,6 +20,8 @@ export abstract class RegisterInput {
 }
 
 export abstract class IMutation {
+    abstract like(input: LikeInput): string | Promise<string>;
+
     abstract login(input: LoginInput): string | Promise<string>;
 
     abstract register(input: RegisterInput): boolean | Promise<boolean>;
