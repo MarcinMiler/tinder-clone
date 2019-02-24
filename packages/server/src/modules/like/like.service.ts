@@ -14,6 +14,10 @@ export class LikeService {
         private readonly matchService: MatchService
     ) {}
 
+    getById(id: number) {
+        return this.likeRepository.findOne(id)
+    }
+
     async like(like: LikeDto) {
         const { userId, toUserId } = like
 
