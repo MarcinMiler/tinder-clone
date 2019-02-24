@@ -4,12 +4,14 @@ import { Repository } from 'typeorm'
 
 import { Like } from './like.entity'
 import { LikeDto } from './dto/like.dto'
+import { MatchService } from '../match/match.service'
 
 @Injectable()
 export class LikeService {
     constructor(
         @InjectRepository(Like)
-        private readonly likeRepository: Repository<Like>
+        private readonly likeRepository: Repository<Like>,
+        private readonly matchService: MatchService
     ) {}
 
     async like(like: LikeDto) {
@@ -20,7 +22,11 @@ export class LikeService {
         })
 
         if (isMatch) {
-            return 'its a match'
+            this.matchService.createMatch(userId, toUserId)
+
+            this.likeRepository.remove(isMatch)
+
+            return 'match'
         }
 
         const newLike = this.likeRepository.create({

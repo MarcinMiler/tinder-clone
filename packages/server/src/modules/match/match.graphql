@@ -1,0 +1,9 @@
+type Query {
+    matches(userId: ID!): [Match!]
+}
+
+type Match {
+    userId1: ID!
+    userId2: ID!
+    date: String!
+}

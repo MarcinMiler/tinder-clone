@@ -19,6 +19,12 @@ export abstract class RegisterInput {
     description?: string;
 }
 
+export abstract class Match {
+    userId1: string;
+    userId2: string;
+    date: string;
+}
+
 export abstract class IMutation {
     abstract like(input: LikeInput): string | Promise<string>;
 
@@ -28,6 +34,8 @@ export abstract class IMutation {
 }
 
 export abstract class IQuery {
+    abstract matches(userId: string): Match[] | Promise<Match[]>;
+
     abstract user(): User | Promise<User>;
 
     abstract users(): User[] | Promise<User[]>;
