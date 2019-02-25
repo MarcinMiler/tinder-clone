@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { AutoSizer, List } from 'react-virtualized'
 
-import { SidebarHeader, SearchInput, SidebarPair, SidebarLikesCounter, SidebarMessage } from '@tinder/components'
+import { SidebarHeader, SearchInput, SidebarMessage } from '@tinder/components'
+import { MatchList } from './MatchList'
 import { Container, Text, ContainerPairs, Messages } from './style'
 
 interface Props {}
@@ -25,13 +26,7 @@ export const Sidebar: React.FC<Props> = () => {
 
             <Text>Pary</Text>
 
-            <ContainerPairs>
-                <SidebarLikesCounter url={url} likes={99} />
-
-                {[1, 2, 3, 4, 5, 6].map(() => (
-                    <SidebarPair url={url} name="Martyna" />
-                ))}
-            </ContainerPairs>
+            <MatchList />
 
             <Text>Messages</Text>
 
