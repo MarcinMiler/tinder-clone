@@ -9,8 +9,8 @@ import { LikeService } from './like.service'
 describe('Like module', () => {
     let mockLikeRepo: TypeMoq.IMock<Repository<Like>>
     let mockMatchRepo: TypeMoq.IMock<Repository<Match>>
-    let likeService
-    let matchService
+    let likeService: LikeService
+    let matchService: MatchService
 
     beforeEach(() => {
         mockMatchRepo = TypeMoq.Mock.ofType<Repository<Match>>()

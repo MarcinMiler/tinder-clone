@@ -33,7 +33,7 @@ export class UserService {
         })
 
         if (emailExists) {
-            throw new Error('email')
+            return
         }
 
         const hash = await this.bcrypt.hash(password, 10)
@@ -57,7 +57,7 @@ export class UserService {
         const user = await this.userRepository.findOne({ where: { email } })
 
         if (!user) {
-            throw new Error('emaill')
+            return
         }
 
         const comparePasswords = await this.bcrypt.compare(
@@ -66,7 +66,7 @@ export class UserService {
         )
 
         if (!comparePasswords) {
-            throw new Error('password')
+            return
         }
 
         const token = await this.authService.signIn(user.id)
