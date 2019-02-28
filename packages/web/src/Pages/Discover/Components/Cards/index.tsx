@@ -20,7 +20,7 @@ const from = () => ({ x: 0, y: 0, rot: 0, scale: 1 })
 const trans = (r: any, s: any) =>
     `rotateX(0deg) rotateY(0deg) rotateZ(${r}deg) scale(${s})`
 
-export const Deck: React.FC<Props> = () => {
+export const Cards: React.FC<Props> = () => {
     //@ts-ignore
     const [props, set] = useSprings(5, (i: any) => ({
         to: to(),
