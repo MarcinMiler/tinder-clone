@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #f7f7f7;
+    border-bottom: 1px solid #e2e2e2;
     background-color: #edf4f5;
 `
 export const Row = styled.div`
@@ -23,13 +23,13 @@ export const Column = styled.div`
 export const HeadText = styled.p`
     font-weight: 600;
     font-size: 12px;
-    color: #aab1b5;
+    color: #7a8084;
 `
 export const SecondaryText = styled.p`
     margin-top: 3px;
     font-weight: 500;
     font-size: 14px;
-    color: #bfc7cc;
+    color: #959da2;
 `
 export const CloseIcon = styled(FiPlusCircle)`
     font-size: 38px;

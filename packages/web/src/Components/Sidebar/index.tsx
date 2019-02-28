@@ -3,7 +3,7 @@ import { AutoSizer, List } from 'react-virtualized'
 
 import { SidebarHeader, SearchInput, SidebarMessage } from '@tinder/components'
 import { MatchList } from './MatchList'
-import { Container, Text, ContainerPairs, Messages } from './style'
+import { Container, Text, Messages } from './style'
 
 interface Props {}
 

@@ -8,7 +8,9 @@ interface ImageProps {
 
 export const Container = styled.div`
     width: 350px;
-    height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
     background-color: #edf4f5;
 `
 export const ProfileImage = styled.div<ImageProps>`
@@ -19,7 +21,9 @@ export const ProfileImage = styled.div<ImageProps>`
     background-position: center;
 `
 export const Content = styled.div`
+    flex: 1;
     padding: 15px;
+    border-left: 1px solid #d6d6d6;
     color: #4f4f4f;
 `
 export const Name = styled.p`

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 interface AvatarProps {
     size: number
     url: string
+    border?: boolean
 }
 
 interface DotProps {
@@ -14,7 +15,6 @@ export const Container = styled.div<AvatarProps>`
     height: ${({ size }) => size + 'px'};
     position: relative;
     border-radius: 50%;
-    border: 2px solid white;
     background: ${({ url }) => `url(${url})`};
     background-size: cover;
     background-position: center;
@@ -30,5 +30,10 @@ export const NotificationDot = styled.div<DotProps>`
     border-radius: 50%;
     border: 2px solid white;
     background-color: #ee1675;
-    transform: ${p => 'rotate(-45deg) ' + 'translate(' + p.parentSize / 2 + 'px)' + 'rotate(45deg)'};
+    transform: ${p =>
+        'rotate(-45deg) ' +
+        'translate(' +
+        p.parentSize / 2 +
+        'px)' +
+        'rotate(45deg)'};
 `
