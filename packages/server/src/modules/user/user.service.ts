@@ -22,7 +22,9 @@ export class UserService {
     }
 
     async getAll() {
-        return await this.userRepository.find()
+        return await this.userRepository.find({
+            relations: ['matches', 'matches.match', 'matches.matchedUser']
+        })
     }
 
     async register(register: RegisterDto) {

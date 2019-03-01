@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+
+import { Member } from '../member/member.entity'
 
 @Entity()
 export class User {
@@ -25,4 +27,7 @@ export class User {
 
     @Column({ nullable: true })
     description: string
+
+    @OneToMany(() => Member, member => member.user)
+    matches: Member[]
 }

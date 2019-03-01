@@ -30,4 +30,5 @@ type User {
     job: String
     education: String
     description: String
+    matches: [Member]
 }

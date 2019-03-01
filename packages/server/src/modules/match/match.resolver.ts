@@ -2,7 +2,7 @@ import { Resolver, Query, Args } from '@nestjs/graphql'
 
 import { MatchService } from './match.service'
 
-@Resolver()
+@Resolver('Match')
 export class MatchResolver {
     constructor(private readonly matchService: MatchService) {}
 

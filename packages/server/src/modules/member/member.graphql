@@ -1,0 +1,8 @@
+type Member {
+    id: Int
+    matchId: Int
+    match: Match
+    userId: Int
+    matchedUserId: Int
+    matchedUser: User
+}

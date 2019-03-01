@@ -1,22 +1,31 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToMany,
+    JoinTable,
+    ManyToOne
+} from 'typeorm'
+
+import { User } from '../user/user.entity'
+import { Member } from '../member/member.entity'
 
 @Entity()
 export class Match {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    userId1: number
+    @ManyToOne(() => Member, member => member.match)
+    member: Member[]
 
-    @Column()
-    userId2: number
+    // @ManyToMany(() => User, user => user.matches)
+    // @JoinTable()
+    // users: User[]
 
     @Column()
     date: Date
 
-    constructor(userId1: number, userId2: number) {
-        this.userId1 = userId1
-        this.userId2 = userId2
+    constructor() {
         this.date = new Date()
     }
 }

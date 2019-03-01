@@ -20,17 +20,26 @@ export abstract class RegisterInput {
 }
 
 export abstract class Match {
-    userId1: string;
-    userId2: string;
+    id: string;
     date: string;
+    users?: User[];
+}
+
+export abstract class Member {
+    id?: number;
+    matchId?: number;
+    match?: Match;
+    userId?: number;
+    matchedUserId?: number;
+    matchedUser?: User;
 }
 
 export abstract class IMutation {
-    abstract like(input: LikeInput): string | Promise<string>;
-
     abstract login(input: LoginInput): string | Promise<string>;
 
     abstract register(input: RegisterInput): boolean | Promise<boolean>;
+
+    abstract like(input: LikeInput): string | Promise<string>;
 }
 
 export abstract class IQuery {
@@ -50,4 +59,5 @@ export abstract class User {
     job?: string;
     education?: string;
     description?: string;
+    matches?: Member[];
 }

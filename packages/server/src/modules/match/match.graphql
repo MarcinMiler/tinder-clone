@@ -3,7 +3,7 @@ type Query {
 }
 
 type Match {
-    userId1: ID!
-    userId2: ID!
+    id: ID!
     date: String!
+    users: [User]
 }
