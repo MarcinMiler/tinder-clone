@@ -7,6 +7,7 @@ import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module'
 import { LikeModule } from './modules/like/like.module'
 import { MatchModule } from './modules/match/match.module'
+import { MessageModule } from './modules/message/message.module'
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { MatchModule } from './modules/match/match.module'
         AuthModule,
         LikeModule,
         MatchModule,
+        MessageModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
             host: 'localhost',
@@ -27,6 +29,7 @@ import { MatchModule } from './modules/match/match.module'
         GraphQLModule.forRoot({
             context: ({ req }) => ({ req }),
             typePaths: ['./**/*.graphql'],
+            installSubscriptionHandlers: true,
             definitions: {
                 path: join(process.cwd(), 'src/graphql.schema.ts'),
                 outputAs: 'class'

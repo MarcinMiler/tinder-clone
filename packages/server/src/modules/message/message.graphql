@@ -1,0 +1,25 @@
+type Query {
+    messages(matchId: ID!): [Message]
+}
+
+type Mutation {
+    createMessage(input: CreateMessageInput!): Boolean
+}
+
+type Subscription {
+    createdMessage(matchId: ID!): Message
+}
+
+input CreateMessageInput {
+    matchId: Int!
+    userId: Int!
+    text: String!
+}
+
+type Message {
+    id: Int!
+    matchId: Int!
+    userId: Int!
+    text: String!
+    date: String!
+}
