@@ -1,6 +1,7 @@
 type Query {
     user: User
     users: [User]
+    me: User
 }
 
 type Mutation {

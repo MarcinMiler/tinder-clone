@@ -1,5 +1,8 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 
+import { GqlAuthGuard } from '../auth/guards/GqlAuthGuard'
+import { Usr } from './decorators/userIdFromJwt.decorator'
 import { UserService } from './user.service'
 import { RegisterDto } from './dto/register.dto'
 import { LoginDto } from './dto/login.dto'
@@ -7,6 +10,16 @@ import { LoginDto } from './dto/login.dto'
 @Resolver('User')
 export class UserResolver {
     constructor(private readonly userService: UserService) {}
+
+    @Query('me')
+    // @UseGuards(new GqlAuthGuard())
+    me(@Usr() userId: number) {
+        return this.userService.getById(1, [
+            'matches',
+            'matches.match',
+            'matches.matchedUser'
+        ])
+    }
 
     @Query('user')
     getUser() {

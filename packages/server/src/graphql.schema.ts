@@ -67,6 +67,8 @@ export abstract class IQuery {
 
     abstract users(): User[] | Promise<User[]>;
 
+    abstract me(): User | Promise<User>;
+
     abstract temp__(): boolean | Promise<boolean>;
 }
 

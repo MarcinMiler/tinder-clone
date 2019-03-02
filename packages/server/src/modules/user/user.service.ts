@@ -17,8 +17,8 @@ export class UserService {
         private readonly authService: AuthService
     ) {}
 
-    async getById(id: number) {
-        return await this.userRepository.findOne(id)
+    async getById(id: number, relations: string[] = []) {
+        return await this.userRepository.findOne(id, { relations })
     }
 
     async getAll() {
