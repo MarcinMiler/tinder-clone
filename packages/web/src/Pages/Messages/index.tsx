@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import { MessagesHeader, MatchProfile, Message } from '@tinder/components'
+import { MessagesHeader, MatchProfile } from '@tinder/components'
+import { MessagesList } from './Components/MessagesList'
 import { Container, Wrap } from './style'
 
 const url =
@@ -11,9 +12,7 @@ export const MessagesPage = () => (
         <Wrap>
             <MessagesHeader url={url} name="Martynka" date="22/08/18" />
 
-            <Message url={url} message="Hey!" />
-
-            <Message url={url} message="Hello!" reverse />
+            <MessagesList />
         </Wrap>
 
         <MatchProfile
