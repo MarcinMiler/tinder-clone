@@ -1,41 +1,54 @@
 import * as React from 'react'
 import { useQuery, useSubscription } from 'react-apollo-hooks'
+import { withRouter, RouteComponentProps } from 'react-router'
+import gql from 'graphql-tag'
 
 import {
     MessagesQuery,
     MessagesSubscription
 } from '../../../../GraphQl/Messages'
 import { Message } from '@tinder/components'
-import gql from 'graphql-tag'
-
-interface Props {}
 
 const url =
     'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/39603362_998758443629799_6345101288283308032_n.jpg?_nc_cat=100&_nc_ht=scontent-waw1-1.xx&oh=b9b43dcdddc56780453d955d601edc9f&oe=5D27D6EC'
 
-const query = gql`
-    query MessagesQuery {
-        messages(matchId: 1) {
-            id
-            userId
-            text
-        }
-    }
-`
+export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
+    match: { params }
+}) => {
+    let ref: any
 
-export const MessagesList: React.FC<Props> = () => {
-    const { data, loading } = useQuery(MessagesQuery, {
-        variables: { matchId: 1 }
+    React.useEffect(() => {
+        if (ref) {
+            ref.scrollIntoView()
+        }
     })
+    const { data, loading } = useQuery(MessagesQuery, {
+        variables: { matchId: params.id },
+        fetchPolicy: 'network-only'
+    })
+
     useSubscription(MessagesSubscription, {
-        variables: { matchId: 1 },
+        variables: { matchId: params.id },
         onSubscriptionData: ({ client, subscriptionData }) => {
+            if (!subscriptionData.data.createdMessage) return
+
+            const query = gql`
+                query MessagesQuery($matchId: ID!) {
+                    messages(matchId: $matchId) {
+                        id
+                        userId
+                        text
+                    }
+                }
+            `
             const data: any = client.readQuery({
-                query
+                query,
+                variables: { matchId: params.id }
             })
 
             client.writeQuery({
                 query,
+                variables: { matchId: params.id },
                 data: {
                     messages: [
                         ...data.messages,
@@ -53,7 +66,7 @@ export const MessagesList: React.FC<Props> = () => {
     return (
         <>
             {data.messages.map((msg: any, i: number) => (
-                <div key={msg.id}>
+                <div key={i}>
                     <Message
                         url={url}
                         message={msg.text}
@@ -61,6 +74,13 @@ export const MessagesList: React.FC<Props> = () => {
                     />
                 </div>
             ))}
+            <div
+                ref={el => {
+                    ref = el
+                }}
+            />
         </>
     )
 }
+
+export const MessagesList = withRouter(C)

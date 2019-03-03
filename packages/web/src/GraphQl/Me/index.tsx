@@ -7,7 +7,7 @@ export const MeQuery = gql`
             username
             age
             matches {
-                id
+                matchId
                 match {
                     date
                 }
