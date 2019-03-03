@@ -7,10 +7,16 @@ interface Props {
     url: string
     name: string
     notificationDot?: boolean
+    onClick?: () => void
 }
 
-export const SidebarPair: React.FC<Props> = ({ url, name, notificationDot }) => (
-    <Container>
+export const SidebarPair: React.FC<Props> = ({
+    url,
+    name,
+    notificationDot,
+    onClick = () => null
+}) => (
+    <Container onClick={onClick}>
         <Avatar url={url} size={80} notificationDot={notificationDot} />
 
         <Name>{name}</Name>

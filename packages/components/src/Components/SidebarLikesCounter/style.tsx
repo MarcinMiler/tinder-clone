@@ -5,7 +5,7 @@ interface ImgProps {
 }
 
 export const Container = styled.div`
-    width: 84px;
+    width: 80px;
     margin-right: 10px;
     display: flex;
     flex-direction: column;
@@ -22,8 +22,8 @@ export const Relative = styled.div`
     position: relative;
 `
 export const GoldBorder = styled.div`
-    width: 84px;
-    height: 84px;
+    width: 80px;
+    height: 80px;
     border: 4px solid #eea851;
     border-radius: 50%;
 `
@@ -47,7 +47,11 @@ export const LikesCount = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    background: linear-gradient(90deg, rgba(238, 168, 81, 1) 0%, rgba(255, 238, 110, 1) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(238, 168, 81, 1) 0%,
+        rgba(255, 238, 110, 1) 100%
+    );
     border-radius: 50%;
     color: white;
     font-weight: 500;

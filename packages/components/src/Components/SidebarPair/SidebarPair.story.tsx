@@ -8,4 +8,6 @@ const url =
 
 storiesOf('SidebarPair', module)
     .add('basic', () => <SidebarPair url={url} name="Martyna" />)
-    .add('with notification dot', () => <SidebarPair url={url} name="Martyna" notificationDot />)
+    .add('with notification dot', () => (
+        <SidebarPair url={url} name="Martyna" notificationDot />
+    ))

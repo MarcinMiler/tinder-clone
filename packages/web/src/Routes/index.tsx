@@ -16,7 +16,10 @@ export const Routes = () => (
                     <Sidebar />
 
                     <Route path="/app/discover" component={DiscoverPage} />
-                    <Route path="/app/messages/:id" component={MessagesPage} />
+                    <Route
+                        path="/app/messages/:id/:userId"
+                        component={MessagesPage}
+                    />
                 </Row>
             </Route>
         </Switch>

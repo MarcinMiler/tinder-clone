@@ -24,7 +24,11 @@ export const C: React.FC<RouteComponentProps> = ({ history }) => {
                         url={url}
                         name={match.matchedUser.username}
                         onClick={() =>
-                            history.push(`/app/messages/${match.matchId}`)
+                            history.push(
+                                `/app/messages/${match.matchId}/${
+                                    match.matchedUserId
+                                }`
+                            )
                         }
                     />
                 </div>

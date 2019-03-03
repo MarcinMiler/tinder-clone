@@ -22,8 +22,8 @@ export class UserResolver {
     }
 
     @Query('user')
-    getUser() {
-        return this.userService.getById(1)
+    getUser(@Args('id') id: number) {
+        return this.userService.getById(id)
     }
 
     @Query('users')
