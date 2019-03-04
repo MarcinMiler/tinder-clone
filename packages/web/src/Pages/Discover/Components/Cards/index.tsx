@@ -5,7 +5,11 @@ import { useGesture } from 'react-with-gesture'
 import { Card } from '@tinder/components'
 import { Container, Item, C } from './style'
 
-interface Props {}
+interface Props {
+    users: any[]
+    like: any
+    dislike: (id: number) => void
+}
 const url =
     'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/39603362_998758443629799_6345101288283308032_n.jpg?_nc_cat=100&_nc_ht=scontent-waw1-1.xx&oh=b9b43dcdddc56780453d955d601edc9f&oe=5D27D6EC'
 
@@ -20,15 +24,12 @@ const from = () => ({ x: 0, y: 0, rot: 0, scale: 1 })
 const trans = (r: any, s: any) =>
     `rotateX(0deg) rotateY(0deg) rotateZ(${r}deg) scale(${s})`
 
-export const Cards: React.FC<Props> = () => {
+export const Cards: React.FC<Props> = ({ users, like, dislike }) => {
     //@ts-ignore
-    const [props, set] = useSprings(5, (i: any) => ({
+    const [props, set] = useSprings(users.length, (i: any) => ({
         to: to(),
         from: from()
     }))
-
-    const like = () => console.log('like')
-    const dislike = () => console.log('dislike')
 
     const bind = useGesture(
         ({
@@ -42,14 +43,17 @@ export const Cards: React.FC<Props> = () => {
             const trigger = velocity > 0.2
             const dir = xDir < 0 ? -1 : 1
 
-            if (!down && trigger) {
-                isGone = true
-
-                dir === 1 ? like() : dislike()
-            }
-
             set((i: number) => {
                 if (index !== i) return
+
+                if (!down && trigger) {
+                    const id = users[i].id
+                    isGone = true
+
+                    dir === 1
+                        ? like({ variables: { userId: 1, toUserId: id } })
+                        : dislike(id)
+                }
 
                 const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0)
                 const x = isGone
@@ -72,6 +76,7 @@ export const Cards: React.FC<Props> = () => {
             })
         }
     )
+
     return (
         <Container as={animated.div}>
             {props.map(({ x, y, rot, scale }: any, i: any) => (
@@ -94,11 +99,11 @@ export const Cards: React.FC<Props> = () => {
                     >
                         <Card
                             url={url}
-                            name="Marcinek"
-                            age={20}
-                            job="Ceo Netguru"
-                            education="Zse-e Radomsko"
-                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed quam non risus feugiat sodales. Curabitur vehicula venenatis mi, nec maximus tellus placerat ac."
+                            name={users[i].username}
+                            age={users[i].age}
+                            job={users[i].job}
+                            education={users[i].education}
+                            description={users[i].description}
                         />
                     </Item>
                 </C>

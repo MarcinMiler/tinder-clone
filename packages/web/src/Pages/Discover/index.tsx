@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import { Cards } from './Components/Cards'
+import { CardsContainer } from './Components/Cards/CardsContainer'
 import { Container } from './style'
 
 export const DiscoverPage = () => (
     <Container>
-        <Cards />
+        <CardsContainer />
     </Container>
 )
