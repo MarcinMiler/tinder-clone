@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo-hooks'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import { SidebarPair, SidebarLikesCounter } from '@tinder/components'
-import { MeQuery } from '../../../GraphQl/Me'
+import { MeQuery } from '../../../GraphQl'
 import { Container } from './style'
 
 const url =

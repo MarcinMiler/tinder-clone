@@ -3,10 +3,7 @@ import { useQuery, useSubscription } from 'react-apollo-hooks'
 import { withRouter, RouteComponentProps } from 'react-router'
 import gql from 'graphql-tag'
 
-import {
-    MessagesQuery,
-    MessagesSubscription
-} from '../../../../GraphQl/Messages'
+import { MessagesQuery, MessagesSubscription } from '../../../../GraphQl'
 import { Message } from '@tinder/components'
 
 const url =

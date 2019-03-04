@@ -8,7 +8,7 @@ import { Container, Item, C } from './style'
 interface Props {
     users: any[]
     like: any
-    dislike: (id: number) => void
+    dislike: any
 }
 const url =
     'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/39603362_998758443629799_6345101288283308032_n.jpg?_nc_cat=100&_nc_ht=scontent-waw1-1.xx&oh=b9b43dcdddc56780453d955d601edc9f&oe=5D27D6EC'
@@ -52,7 +52,7 @@ export const Cards: React.FC<Props> = ({ users, like, dislike }) => {
 
                     dir === 1
                         ? like({ variables: { userId: 1, toUserId: id } })
-                        : dislike(id)
+                        : dislike({ variables: { toUserId: id } })
                 }
 
                 const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0)
