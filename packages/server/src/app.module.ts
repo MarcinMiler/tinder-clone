@@ -6,6 +6,7 @@ import { join } from 'path'
 import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module'
 import { LikeModule } from './modules/like/like.module'
+import { DislikeModule } from './modules/dislike/dislike.module'
 import { MatchModule } from './modules/match/match.module'
 import { MessageModule } from './modules/message/message.module'
 
@@ -14,6 +15,7 @@ import { MessageModule } from './modules/message/message.module'
         UserModule,
         AuthModule,
         LikeModule,
+        DislikeModule,
         MatchModule,
         MessageModule,
         TypeOrmModule.forRoot({

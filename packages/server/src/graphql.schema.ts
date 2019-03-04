@@ -49,6 +49,8 @@ export abstract class Message {
 }
 
 export abstract class IMutation {
+    abstract dislike(toUserId: string): boolean | Promise<boolean>;
+
     abstract like(input: LikeInput): string | Promise<string>;
 
     abstract createMessage(input: CreateMessageInput): boolean | Promise<boolean>;
