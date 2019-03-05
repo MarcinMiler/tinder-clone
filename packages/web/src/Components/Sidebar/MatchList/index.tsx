@@ -2,8 +2,9 @@ import * as React from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import { SidebarPair, SidebarLikesCounter } from '@tinder/components'
+import { SidebarPair } from '@tinder/components'
 import { MeQuery } from '../../../GraphQl'
+import { LikesCount } from '../LikesCount'
 import { Container } from './style'
 
 const url =
@@ -16,7 +17,7 @@ export const C: React.FC<RouteComponentProps> = ({ history }) => {
 
     return (
         <Container>
-            <SidebarLikesCounter url={url} likes={99} />
+            <LikesCount />
 
             {data.me.matches.map((match: any) => (
                 <div key={match.matchId}>

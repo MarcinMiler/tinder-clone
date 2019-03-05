@@ -5,3 +5,13 @@ export const LikeMutation = gql`
         like(input: { userId: $userId, toUserId: $toUserId })
     }
 `
+export const LikesQuery = gql`
+    query LikesQuery {
+        likes
+    }
+`
+export const LikesSubscription = gql`
+    subscription newLike($userId: ID!) {
+        newLike(userId: $userId)
+    }
+`
