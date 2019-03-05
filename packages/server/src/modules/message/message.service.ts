@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Inject } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { PubSub } from 'graphql-subscriptions'
@@ -9,6 +9,7 @@ import { MessageDto } from './dto/message.dto'
 @Injectable()
 export class MessageService {
     constructor(
+        @Inject('PubSub') private readonly pubSub: PubSub,
         @InjectRepository(Message)
         private readonly messageRepository: Repository<Message>
     ) {}
@@ -17,12 +18,12 @@ export class MessageService {
         return this.messageRepository.find({ where: { matchId } })
     }
 
-    async createMessage(message: MessageDto, pubsub: PubSub) {
+    async createMessage(message: MessageDto) {
         const { matchId, userId, text } = message
 
         const newMessage = new Message(matchId, userId, text)
         await this.messageRepository.save(newMessage)
 
-        pubsub.publish('createdMessage', newMessage)
+        this.pubSub.publish('createdMessage', newMessage)
     }
 }

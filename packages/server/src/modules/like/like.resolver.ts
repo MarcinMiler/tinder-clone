@@ -1,14 +1,16 @@
+import { Inject } from '@nestjs/common'
 import { Resolver, Mutation, Args, Query, Subscription } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 
 import { LikeService } from './like.service'
 import { LikeDto } from './dto/like.dto'
 
-const pubsub = new PubSub()
-
 @Resolver()
 export class LikeResolver {
-    constructor(private readonly likeService: LikeService) {}
+    constructor(
+        @Inject('PubSub') private readonly pubSub: PubSub,
+        private readonly likeService: LikeService
+    ) {}
 
     @Query('likes')
     likes() {
@@ -17,7 +19,7 @@ export class LikeResolver {
 
     @Mutation('like')
     like(@Args('input') like: LikeDto) {
-        return this.likeService.like(like, pubsub)
+        return this.likeService.like(like)
     }
 
     @Subscription('newLike')
@@ -29,7 +31,7 @@ export class LikeResolver {
                 }
                 return true
             },
-            subscribe: () => pubsub.asyncIterator('newLike')
+            subscribe: () => this.pubSub.asyncIterator('newLike')
         }
     }
 }

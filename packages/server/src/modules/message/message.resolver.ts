@@ -1,14 +1,16 @@
+import { Inject } from '@nestjs/common'
 import { Resolver, Args, Query, Mutation, Subscription } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 
 import { MessageService } from './message.service'
 import { MessageDto } from './dto/message.dto'
 
-const pubSub = new PubSub()
-
 @Resolver()
 export class MessageResolver {
-    constructor(private readonly messageService: MessageService) {}
+    constructor(
+        @Inject('PubSub') private readonly pubSub: PubSub,
+        private readonly messageService: MessageService
+    ) {}
 
     @Query('messages')
     messages(@Args('matchId') matchId: number) {
@@ -17,7 +19,7 @@ export class MessageResolver {
 
     @Mutation('createMessage')
     createMessage(@Args('input') message: MessageDto) {
-        this.messageService.createMessage(message, pubSub)
+        this.messageService.createMessage(message)
     }
 
     @Subscription('createdMessage')
@@ -29,7 +31,7 @@ export class MessageResolver {
                 }
                 return payload
             },
-            subscribe: () => pubSub.asyncIterator('createdMessage')
+            subscribe: () => this.pubSub.asyncIterator('createdMessage')
         }
     }
 }

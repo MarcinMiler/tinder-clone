@@ -5,9 +5,10 @@ import { Like } from './like.entity'
 import { LikeResolver } from './like.resolver'
 import { LikeService } from './like.service'
 import { MatchModule } from '../match/match.module'
+import { PubSupProvider } from 'src/PubSubProvider'
 
 @Module({
     imports: [TypeOrmModule.forFeature([Like]), MatchModule],
-    providers: [LikeResolver, LikeService]
+    providers: [LikeResolver, LikeService, PubSupProvider]
 })
 export class LikeModule {}
