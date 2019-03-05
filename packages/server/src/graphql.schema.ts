@@ -61,6 +61,8 @@ export abstract class IMutation {
 }
 
 export abstract class IQuery {
+    abstract likes(): number | Promise<number>;
+
     abstract matches(userId: string): Match[] | Promise<Match[]>;
 
     abstract messages(matchId: string): Message[] | Promise<Message[]>;
@@ -75,6 +77,8 @@ export abstract class IQuery {
 }
 
 export abstract class ISubscription {
+    abstract newLike(userId: string): boolean | Promise<boolean>;
+
     abstract createdMessage(matchId: string): Message | Promise<Message>;
 }
 

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm'
 import { Like } from './like.entity'
 import { LikeDto } from './dto/like.dto'
 import { MatchService } from '../match/match.service'
+import { PubSub } from 'graphql-subscriptions'
 
 @Injectable()
 export class LikeService {
@@ -18,7 +19,15 @@ export class LikeService {
         return this.likeRepository.findOne(id)
     }
 
-    async like(like: LikeDto) {
+    getByUserIdAndCount(userId: number) {
+        return this.likeRepository
+            .createQueryBuilder('like')
+            .where('like.toUserId = :userId', { userId })
+            .andWhere(`like.date > (now() - interval '1 day')`)
+            .getCount()
+    }
+
+    async like(like: LikeDto, pubsub: PubSub) {
         const { userId, toUserId } = like
 
         const isMatch = await this.likeRepository.findOne({
@@ -38,5 +47,7 @@ export class LikeService {
             date: new Date()
         })
         await this.likeRepository.save(newLike)
+
+        pubsub.publish('newLike', newLike)
     }
 }

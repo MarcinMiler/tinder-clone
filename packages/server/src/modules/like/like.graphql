@@ -1,5 +1,13 @@
+type Query {
+    likes: Int!
+}
+
 type Mutation {
     like(input: LikeInput!): ID
+}
+
+type Subscription {
+    newLike(userId: ID!): Boolean
 }
 
 input LikeInput {
