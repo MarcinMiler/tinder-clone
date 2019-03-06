@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useSubscription } from 'react-apollo-hooks'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import { SidebarPair } from '@tinder/components'
-import { MeQuery } from '../../../GraphQl'
+import { MeQuery, NewMatchSubscription } from '../../../GraphQl'
 import { LikesCount } from '../LikesCount'
 import { Container } from './style'
 
@@ -12,6 +12,29 @@ const url =
 
 export const C: React.FC<RouteComponentProps> = ({ history }) => {
     const { data, loading } = useQuery(MeQuery)
+    useSubscription(NewMatchSubscription, {
+        variables: { userId: 1 },
+        onSubscriptionData: ({ client, subscriptionData }) => {
+            if (!subscriptionData.data.newMatch) return
+
+            const data: any = client.readQuery({
+                query: MeQuery
+            })
+
+            client.writeQuery({
+                query: MeQuery,
+                data: {
+                    me: {
+                        ...data.me,
+                        matches: [
+                            subscriptionData.data.newMatch,
+                            ...data.me.matches
+                        ]
+                    }
+                }
+            })
+        }
+    })
 
     if (loading) return <p>lol</p>
 
