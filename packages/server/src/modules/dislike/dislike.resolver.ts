@@ -10,8 +10,8 @@ export class DislikeResolver {
     constructor(private readonly dislikeService: DislikeService) {}
 
     @Mutation('dislike')
-    // @UseGuards(new GqlAuthGuard())
-    dislike(@Args('toUserId') toUserId: number, @Usr() userId: number) {
-        return this.dislikeService.createDislike(toUserId, 1)
+    @UseGuards(new GqlAuthGuard())
+    dislike(@Args('toUserId') toUserId: number, @Usr() user: any) {
+        return this.dislikeService.createDislike(user.id, toUserId)
     }
 }

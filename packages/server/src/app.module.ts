@@ -10,6 +10,7 @@ import { DislikeModule } from './modules/dislike/dislike.module'
 import { MatchModule } from './modules/match/match.module'
 import { MessageModule } from './modules/message/message.module'
 import { MemberModule } from './modules/member/member.module'
+import { DiscoverModule } from './modules/discover/discover.module'
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { MemberModule } from './modules/member/member.module'
         MatchModule,
         MessageModule,
         MemberModule,
+        DiscoverModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
             host: 'localhost',
