@@ -63,9 +63,9 @@ export abstract class IMutation {
 export abstract class IQuery {
     abstract likes(): number | Promise<number>;
 
-    abstract matches(userId: string): Match[] | Promise<Match[]>;
-
     abstract messages(matchId: string): Message[] | Promise<Message[]>;
+
+    abstract matches(userId: string): Match[] | Promise<Match[]>;
 
     abstract user(id: string): User | Promise<User>;
 
@@ -80,6 +80,8 @@ export abstract class ISubscription {
     abstract newLike(userId: string): boolean | Promise<boolean>;
 
     abstract createdMessage(matchId: string): Message | Promise<Message>;
+
+    abstract newMatch(userId: string): Member | Promise<Member>;
 }
 
 export abstract class User {
