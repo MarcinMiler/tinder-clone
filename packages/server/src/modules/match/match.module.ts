@@ -6,7 +6,7 @@ import { MatchResolver } from './match.resolver'
 import { MatchService } from './match.service'
 import { Member } from '../member/member.entity'
 import { MemberModule } from '../member/member.module'
-import { PubSupProvider } from 'src/PubSubProvider'
+import { PubSupProvider } from '../../PubSubProvider'
 
 @Module({
     imports: [TypeOrmModule.forFeature([Match, Member]), MemberModule],

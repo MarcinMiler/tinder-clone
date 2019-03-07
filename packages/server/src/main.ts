@@ -7,4 +7,5 @@ async function bootstrap() {
     await app.listen(4000)
 }
 
-bootstrap()
+// wait for db to accept connection
+setTimeout(async () => await bootstrap(), 5000)

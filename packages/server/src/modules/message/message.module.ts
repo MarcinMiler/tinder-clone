@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { Message } from './message.entity'
 import { MessageResolver } from './message.resolver'
 import { MessageService } from './message.service'
-import { PubSupProvider } from 'src/PubSubProvider'
+import { PubSupProvider } from '../../PubSubProvider'
 
 @Module({
     imports: [TypeOrmModule.forFeature([Message])],

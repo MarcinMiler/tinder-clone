@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+    db:
+        image: postgres
+        environment:
+            POSTGRES_PASSWORD: root
+            POSTGRES_USER: root
+            POSTGRES_DB: tinder
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        ports:
+            - '5431:5432'
+    server:
+        image: tinder-server
+        depends_on:
+            - db
+        ports:
+            - '4000:4000'

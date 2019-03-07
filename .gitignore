@@ -10,6 +10,7 @@
 
 # production
 /build
+/pgdata
 
 # misc
 .DS_Store
