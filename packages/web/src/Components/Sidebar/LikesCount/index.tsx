@@ -11,7 +11,7 @@ export const LikesCount = () => {
     const { data, loading } = useQuery(LikesQuery)
 
     useSubscription(LikesSubscription, {
-        variables: { userId: 2 },
+        variables: { userId: 1 },
         onSubscriptionData: ({ client, subscriptionData }) => {
             if (!subscriptionData.data.newLike) return
 

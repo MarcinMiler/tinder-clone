@@ -24,8 +24,8 @@ import { DiscoverModule } from './modules/discover/discover.module'
         DiscoverModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'db',
-            port: 5432,
+            host: 'localhost',
+            port: 5431,
             username: 'root',
             password: 'root',
             database: 'tinder',
