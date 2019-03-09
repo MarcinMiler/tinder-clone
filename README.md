@@ -12,6 +12,7 @@ Fullstack tinder-clone app made with React/Typescript/Nestjs/Graphql
 -   [ ] Settings of profile (select age range, update profile)
 -   [ ] Messages infinite loading
 -   [ ] Elo score ranking
+-   [ ] Optimazation
 
 ## Run local
 
@@ -33,4 +34,5 @@ Fullstack tinder-clone app made with React/Typescript/Nestjs/Graphql
 
 # Screens
 
+![login](./AppScreens/Login.png)
 ![messages](./AppScreens/Messages.png)
