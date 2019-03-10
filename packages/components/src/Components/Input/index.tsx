@@ -3,10 +3,11 @@ import * as React from 'react'
 import { StyledInput, Label } from './style'
 
 interface Props {
-    onChange: (text: string) => void
+    onChange: (e: any) => void
     value?: string | number
     label: string
     type: string
+    name: string
     placeholder?: string
 }
 
@@ -15,12 +16,14 @@ export const Input: React.FC<Props> = ({
     value,
     onChange,
     label,
+    name,
     type
 }) => (
     <>
         <Label>{label}</Label>
         <StyledInput
-            onChange={e => onChange(e.target.value)}
+            name={name}
+            onChange={onChange}
             placeholder={placeholder}
             value={value}
             type={type}

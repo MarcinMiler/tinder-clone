@@ -53,11 +53,11 @@ export abstract class IMutation {
 
     abstract like(input: LikeInput): string | Promise<string>;
 
-    abstract createMessage(input: CreateMessageInput): boolean | Promise<boolean>;
-
     abstract login(input: LoginInput): string | Promise<string>;
 
     abstract register(input: RegisterInput): boolean | Promise<boolean>;
+
+    abstract createMessage(input: CreateMessageInput): boolean | Promise<boolean>;
 }
 
 export abstract class IQuery {
@@ -67,13 +67,13 @@ export abstract class IQuery {
 
     abstract matches(userId: string): Match[] | Promise<Match[]>;
 
-    abstract messages(matchId: string): Message[] | Promise<Message[]>;
-
     abstract user(id: string): User | Promise<User>;
 
     abstract users(): User[] | Promise<User[]>;
 
     abstract me(): User | Promise<User>;
+
+    abstract messages(matchId: string): Message[] | Promise<Message[]>;
 
     abstract temp__(): boolean | Promise<boolean>;
 }

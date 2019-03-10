@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 export const Background = styled.div`
     width: 100%;
@@ -15,18 +14,10 @@ export const Background = styled.div`
 `
 export const Wraper = styled.div`
     width: 500px;
-    height: 550px;
     padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
     background-color: white;
-`
-export const Logo = styled.div`
-    height: 100px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Logo-Tinder.svg/1280px-Logo-Tinder.svg.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
 `

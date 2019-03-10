@@ -7,26 +7,20 @@ import { useForm } from '../../../Hooks/useForm'
 import { LoginForm } from './Form'
 
 export const C: React.FC<RouteComponentProps> = ({ history: { push } }) => {
-    const handleEmail = useForm('')
-    const handlePassword = useForm('')
+    const { onChange, values } = useForm() as any
 
     const login = useMutation(LoginMutation, {
-        variables: { email: handleEmail.value, password: handlePassword.value },
-        update: (proxy, mutationResult) => {
-            const token = mutationResult.data.login
-            localStorage.setItem('token', token)
+        variables: { email: values.email, password: values.password },
+        update: (proxy, { data }) => {
+            const token = data.login
+            if (!token) return
 
+            localStorage.setItem('token', token)
             push('app/discover')
         }
     })
 
-    const propsSender = () => ({
-        handleEmail,
-        handlePassword,
-        login
-    })
-
-    return <LoginForm {...propsSender()} />
+    return <LoginForm login={login} onChange={onChange} />
 }
 
 export const Form = withRouter(C)

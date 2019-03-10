@@ -10,5 +10,6 @@ storiesOf('Input', module).add('basic', () => (
         value="m@m.com"
         label="Email"
         type="text"
+        name="Email"
     />
 ))

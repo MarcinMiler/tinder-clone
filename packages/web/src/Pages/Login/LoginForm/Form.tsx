@@ -4,26 +4,27 @@ import { Input, Button } from '@tinder/components'
 import { Center, StyledLink } from './style'
 
 interface Props {
-    handleEmail: any
-    handlePassword: any
+    onChange: (e: any) => void
     login: () => void
 }
 
-export const LoginForm: React.FC<Props> = ({
-    handleEmail,
-    handlePassword,
-    login
-}) => (
+export const LoginForm: React.FC<Props> = ({ onChange, login }) => (
     <>
         <div>
             <Input
-                {...handleEmail}
-                placeholder="mail@some.com"
+                onChange={onChange}
+                name="email"
                 label="Email"
+                placeholder="mail@some.com"
                 type="text"
             />
 
-            <Input {...handlePassword} label="Password" type="password" />
+            <Input
+                onChange={onChange}
+                name="password"
+                label="Password"
+                type="password"
+            />
         </div>
 
         <div>

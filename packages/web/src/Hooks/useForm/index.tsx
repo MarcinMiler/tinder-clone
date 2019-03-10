@@ -1,10 +1,13 @@
 import * as React from 'react'
 
-export const useForm = (initialValue: any) => {
-    const [value, setValue] = React.useState(initialValue)
+export const useForm = () => {
+    const [values, setValues] = React.useState({})
+
+    const onChange = (e: any) =>
+        setValues({ ...values, [e.target.name]: e.target.value })
 
     return {
-        onChange: (text: string) => setValue(text),
-        value
+        onChange,
+        values
     }
 }
