@@ -11,18 +11,19 @@ interface Props {
 export const LoginForm: React.FC<Props> = ({ onChange, login }) => (
     <>
         <div>
+            TEST ACCOUNT!!! email: test@test.com password: test
             <Input
                 onChange={onChange}
                 name="email"
                 label="Email"
-                placeholder="mail@some.com"
+                placeholder="test@test.com (test account)"
                 type="text"
             />
-
             <Input
                 onChange={onChange}
                 name="password"
                 label="Password"
+                placeholder="test"
                 type="password"
             />
         </div>

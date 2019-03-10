@@ -14,9 +14,15 @@ interface Props {
     url: string
     name: string
     date: string
+    onClick?: () => void
 }
 
-export const MessagesHeader: React.FC<Props> = ({ url, name, date }) => (
+export const MessagesHeader: React.FC<Props> = ({
+    url,
+    name,
+    date,
+    onClick = () => null
+}) => (
     <Container>
         <Row>
             <Avatar size={50} url={url} />
@@ -30,6 +36,6 @@ export const MessagesHeader: React.FC<Props> = ({ url, name, date }) => (
             </Column>
         </Row>
 
-        <CloseIcon />
+        <CloseIcon onClick={onClick} />
     </Container>
 )

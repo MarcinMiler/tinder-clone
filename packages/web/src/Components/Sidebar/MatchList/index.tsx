@@ -16,7 +16,7 @@ export const C: React.FC<RouteComponentProps> = ({ history }) => {
         variables: { userId: 1 },
         onSubscriptionData: ({ client, subscriptionData }) => {
             if (!subscriptionData.data.newMatch) return
-
+            alert('its a match!')
             const data: any = client.readQuery({
                 query: MeQuery
             })

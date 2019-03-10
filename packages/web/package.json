@@ -13,6 +13,7 @@
         "apollo-link-error": "^1.1.7",
         "apollo-link-http": "^1.5.11",
         "apollo-link-ws": "^1.0.14",
+        "faker": "^4.1.0",
         "graphql-tag": "^2.10.1",
         "react": "^16.8.2",
         "react-apollo": "^2.4.1",
@@ -43,6 +44,7 @@
         "not op_mini all"
     ],
     "devDependencies": {
+        "@types/faker": "^4.1.5",
         "@types/react-router-dom": "^4.3.1",
         "@types/react-virtualized": "^9.18.12",
         "@types/styled-components": "^4.1.10"

@@ -2,6 +2,10 @@
 
 Fullstack tinder-clone app made with React/Typescript/Nestjs/Graphql
 
+Link to the frontend: [https://tinder-clone.netlify.com/](https://tinder-clone.netlify.com/)
+
+Link to API: [https://evening-hamlet-82255.herokuapp.com/](https://evening-hamlet-82255.herokuapp.com/)
+
 ![app](./AppScreens/App.png)
 
 ## Todo
@@ -20,7 +24,7 @@ Fullstack tinder-clone app made with React/Typescript/Nestjs/Graphql
 
 1. `git clone https://github.com/MarcinMiler/tinder-clone.git`
 
-2. `yarn install` (must be yarn because of yarn workspaces)
+2. `yarn` (must be yarn because of yarn workspaces)
 
 3. `yarn build:web`
 
