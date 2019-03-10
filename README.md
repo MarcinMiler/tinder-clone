@@ -30,6 +30,8 @@ Link to API: [https://evening-hamlet-82255.herokuapp.com/](https://evening-hamle
 
 4. `cd packages/web && yarn start`
 
+5. If you want to use local server uncomment url in `apollo.ts`
+
 ### server:
 
 1. `docker build -t tinder-server .`

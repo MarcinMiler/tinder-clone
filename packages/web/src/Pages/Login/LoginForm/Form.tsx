@@ -6,12 +6,27 @@ import { Center, StyledLink } from './style'
 interface Props {
     onChange: (e: any) => void
     login: () => void
+    loading: boolean
+    setLoading: (value: boolean) => void
 }
 
-export const LoginForm: React.FC<Props> = ({ onChange, login }) => (
+export const LoginForm: React.FC<Props> = ({
+    onChange,
+    login,
+    loading,
+    setLoading
+}) => (
     <>
         <div>
-            TEST ACCOUNT!!! email: test@test.com password: test
+            {/* Ignore code below ↓↓↓ */}
+            <p>
+                <p style={{ fontWeight: 600 }}>TEST ACCOUNT!!!</p> email:
+                test@test.com password: test
+            </p>{' '}
+            <p style={{ margin: '8px 0 8px 0' }}>
+                (heroku server sleep after 30 minutes so login may take 15/30
+                seconds)
+            </p>
             <Input
                 onChange={onChange}
                 name="email"
@@ -29,7 +44,15 @@ export const LoginForm: React.FC<Props> = ({ onChange, login }) => (
         </div>
 
         <div>
-            <Button onClick={login}>Login</Button>
+            <Button
+                onClick={() => {
+                    setLoading(true)
+                    login()
+                }}
+                loading={loading}
+            >
+                Login
+            </Button>
             <Center>
                 <StyledLink to="/register">Register</StyledLink>
             </Center>

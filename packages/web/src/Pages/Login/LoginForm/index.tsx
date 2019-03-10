@@ -7,6 +7,7 @@ import { useForm } from '../../../Hooks/useForm'
 import { LoginForm } from './Form'
 
 export const C: React.FC<RouteComponentProps> = ({ history: { push } }) => {
+    const [loading, setLoading] = React.useState(false)
     const { onChange, values } = useForm() as any
 
     const login = useMutation(LoginMutation, {
@@ -20,7 +21,14 @@ export const C: React.FC<RouteComponentProps> = ({ history: { push } }) => {
         }
     })
 
-    return <LoginForm login={login} onChange={onChange} />
+    return (
+        <LoginForm
+            login={login}
+            onChange={onChange}
+            loading={loading}
+            setLoading={setLoading}
+        />
+    )
 }
 
 export const Form = withRouter(C)
