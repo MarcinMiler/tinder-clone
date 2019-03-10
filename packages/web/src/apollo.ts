@@ -25,7 +25,7 @@ const authLink = setContext((_, { headers }) => {
 
 const wsLink = new WebSocketLink({
     // uri: `ws://localhost:4000/graphql`,
-    uri: `ws://evening-hamlet-82255.herokuapp.com/graphql`,
+    uri: `wss://evening-hamlet-82255.herokuapp.com/graphql`,
     options: {
         reconnect: true
     }
