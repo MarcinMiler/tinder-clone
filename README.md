@@ -6,6 +6,8 @@ Link to the frontend: [https://tinder-clone.netlify.com/](https://tinder-clone.n
 
 Link to API: [https://evening-hamlet-82255.herokuapp.com/](https://evening-hamlet-82255.herokuapp.com/)
 
+Link to Storybook: [https://tinder-storybook.netlify.com](https://tinder-storybook.netlify.com)
+
 ![app](./AppScreens/App.png)
 
 ## Todo
@@ -37,6 +39,12 @@ Link to API: [https://evening-hamlet-82255.herokuapp.com/](https://evening-hamle
 1. `docker build -t tinder-server .`
 
 2. `docker-compose up`
+
+### storybook:
+
+1. `yarn` (if you dont install dependencies)
+
+2. `cd packages/components && yarn storybook`
 
 # Screens
 
