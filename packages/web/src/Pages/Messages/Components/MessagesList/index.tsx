@@ -3,7 +3,11 @@ import { useQuery, useSubscription } from 'react-apollo-hooks'
 import { withRouter, RouteComponentProps } from 'react-router'
 import gql from 'graphql-tag'
 
-import { MessagesQuery, MessagesSubscription } from '../../../../GraphQl'
+import {
+    MessagesQuery,
+    MessagesSubscription,
+    MeQuery
+} from '../../../../GraphQl'
 import { Message } from '@tinder/components'
 
 const url =
@@ -19,10 +23,15 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
             ref.scrollIntoView()
         }
     })
+
     const { data, loading } = useQuery(MessagesQuery, {
         variables: { matchId: params.id },
         fetchPolicy: 'network-only'
     })
+    const me = useQuery(MeQuery, { fetchPolicy: 'cache-only' })
+    let userId: number
+
+    if (me.data && me.data.me && me.data.me.id) userId = me.data.me.id
 
     useSubscription(MessagesSubscription, {
         variables: { matchId: params.id },
@@ -67,7 +76,7 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
                     <Message
                         url={url}
                         message={msg.text}
-                        reverse={i % 2 == 0}
+                        reverse={msg.userId === userId}
                     />
                 </div>
             ))}

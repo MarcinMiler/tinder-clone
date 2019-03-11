@@ -1,7 +1,9 @@
-import { Inject } from '@nestjs/common'
+import { Inject, UseGuards } from '@nestjs/common'
 import { Resolver, Mutation, Args, Query, Subscription } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 
+import { GqlAuthGuard } from '../auth/guards/GqlAuthGuard'
+import { Usr } from '../user/decorators/userIdFromJwt.decorator'
 import { LikeService } from './like.service'
 import { LikeDto } from './dto/like.dto'
 
@@ -13,8 +15,9 @@ export class LikeResolver {
     ) {}
 
     @Query('likes')
-    likes() {
-        return this.likeService.getByUserIdAndCount(2)
+    @UseGuards(new GqlAuthGuard())
+    likes(@Usr() user) {
+        return this.likeService.getByUserIdAndCount(user.id)
     }
 
     @Mutation('like')

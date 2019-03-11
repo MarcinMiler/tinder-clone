@@ -24,13 +24,25 @@ import { DiscoverModule } from './modules/discover/discover.module'
         DiscoverModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'localhost',
-            port: 5431,
-            username: 'root',
-            password: 'root',
-            database: 'tinder',
+            host: process.env.HOST,
+            url: process.env.DATABASE_URL,
+            port: 5432,
+            username: process.env.USERNAME,
+            password: process.env.PASSWORD,
+            database: process.env.DATABASE,
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
-            synchronize: true
+            synchronize: true,
+            extra: {
+                ssl: true
+            }
+            // type: 'postgres',
+            // host: 'localhost',
+            // port: 5431,
+            // username: 'root',
+            // password: 'root',
+            // database: 'tinder',
+            // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            // synchronize: true
         }),
         GraphQLModule.forRoot({
             context: ({ req }) => ({ req }),
