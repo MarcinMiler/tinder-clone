@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
-    input {
+    input, textarea {
         border: none;
         font-family: 'Montserrat', sans-serif;
 
