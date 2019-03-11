@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router'
 import { MessagesHeader } from '@tinder/components'
 import { MessagesList } from './Components/MessagesList'
 import { Profile } from './Components/Profile'
+import { Input } from './Components/Input'
 import { Container, Wrap, Scroll } from './style'
 
 const url =
@@ -23,6 +24,8 @@ export const MessagesPage: React.FC<RouteComponentProps> = ({
             <Scroll>
                 <MessagesList />
             </Scroll>
+
+            <Input />
         </Wrap>
 
         <Profile />
