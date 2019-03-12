@@ -12,9 +12,9 @@ export class UserResolver {
     constructor(private readonly userService: UserService) {}
 
     @Query('me')
-    // @UseGuards(new GqlAuthGuard())
-    me(@Usr() userId: number) {
-        return this.userService.getById(1, [
+    @UseGuards(new GqlAuthGuard())
+    me(@Usr() user) {
+        return this.userService.getById(user.id, [
             'matches',
             'matches.match',
             'matches.matchedUser'

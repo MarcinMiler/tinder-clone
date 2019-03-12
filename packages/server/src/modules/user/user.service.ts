@@ -40,17 +40,13 @@ export class UserService {
 
         const hash = await this.bcrypt.hash(password, 10)
 
-        try {
-            const newUser = this.userRepository.create({
-                ...register,
-                password: hash
-            })
-            await this.userRepository.save(newUser)
+        const newUser = this.userRepository.create({
+            ...register,
+            password: hash
+        })
+        await this.userRepository.save(newUser)
 
-            return true
-        } catch (e) {
-            return false
-        }
+        return true
     }
 
     async login(login: LoginDto) {

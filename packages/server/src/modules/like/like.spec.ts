@@ -4,16 +4,23 @@ import { Repository } from 'typeorm'
 import { MatchService } from '../match/match.service'
 import { Like } from './like.entity'
 import { LikeService } from './like.service'
+import { PubSub } from 'graphql-subscriptions'
 
 describe('Like module', () => {
     let mockLikeRepo: TypeMoq.IMock<Repository<Like>>
     let matchService: TypeMoq.IMock<MatchService>
+    let pubSub: TypeMoq.IMock<PubSub>
     let likeService: LikeService
 
     beforeEach(() => {
         mockLikeRepo = TypeMoq.Mock.ofType<Repository<Like>>()
         matchService = TypeMoq.Mock.ofType<MatchService>()
-        likeService = new LikeService(mockLikeRepo.object, matchService.object)
+        pubSub = TypeMoq.Mock.ofType<PubSub>()
+        likeService = new LikeService(
+            pubSub.object,
+            mockLikeRepo.object,
+            matchService.object
+        )
     })
 
     it('should save like to database and dont create match', async () => {
@@ -71,6 +78,10 @@ describe('Like module', () => {
                 )
             )
             .verifiable()
+
+        pubSub.setup(x =>
+            x.publish(TypeMoq.It.isAnyString(), TypeMoq.It.isAnyObject)
+        )
 
         // act
         const like = await likeService.like({ userId: 1, toUserId: 2 })

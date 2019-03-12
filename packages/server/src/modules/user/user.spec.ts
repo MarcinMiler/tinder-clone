@@ -21,7 +21,8 @@ describe('User module', () => {
         age: 20,
         job: null,
         education: null,
-        description: null
+        description: null,
+        matches: []
     }
 
     beforeEach(() => {
@@ -34,7 +35,7 @@ describe('User module', () => {
         )
     })
 
-    it(`should'nt register with incorrect credentials`, async () => {
+    it(`should not register with incorrect credentials`, async () => {
         mockUserRepo
             .setup(x => x.findOne(TypeMoq.It.isAny()))
             .returns(() => Promise.resolve(user))
