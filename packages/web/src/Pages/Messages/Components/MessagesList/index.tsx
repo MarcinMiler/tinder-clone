@@ -17,11 +17,11 @@ const url =
 export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
     match: { params }
 }) => {
-    let scroll: any
+    const scroll = React.useRef<HTMLDivElement>(null)
 
     React.useEffect(() => {
-        if (scroll) {
-            scroll.scrollTop = scroll.scrollHeight
+        if (scroll.current) {
+            scroll.current.scrollTop = scroll.current.scrollHeight
         }
     })
 
@@ -72,7 +72,7 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
     }
 
     const handleScroll = () => {
-        if (scroll.scrollTop !== 0) return
+        if (scroll.current!.scrollTop !== 0) return
 
         fetchMore({
             variables: {
@@ -96,12 +96,7 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
     }
 
     return (
-        <Scroll
-            ref={el => {
-                scroll = el
-            }}
-            onScroll={handleScroll}
-        >
+        <Scroll ref={scroll} onScroll={handleScroll}>
             {[...data.messages].reverse().map((msg: any, i: number) => (
                 <div key={i}>
                     <Message
