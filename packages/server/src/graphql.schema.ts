@@ -67,7 +67,7 @@ export abstract class IQuery {
 
     abstract matches(userId: string): Match[] | Promise<Match[]>;
 
-    abstract messages(matchId: string): Message[] | Promise<Message[]>;
+    abstract messages(matchId: string, cursor?: string): Message[] | Promise<Message[]>;
 
     abstract user(id: string): User | Promise<User>;
 

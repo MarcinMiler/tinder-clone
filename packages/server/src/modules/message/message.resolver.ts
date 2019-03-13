@@ -13,8 +13,8 @@ export class MessageResolver {
     ) {}
 
     @Query('messages')
-    messages(@Args('matchId') matchId: number) {
-        return this.messageService.getByMatchId(matchId)
+    messages(@Args('matchId') matchId: number, @Args('cursor') cursor: string) {
+        return this.messageService.getByMatchId(matchId, cursor)
     }
 
     @Mutation('createMessage')

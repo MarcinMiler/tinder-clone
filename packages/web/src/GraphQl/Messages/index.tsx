@@ -1,11 +1,12 @@
 import gql from 'graphql-tag'
 
 export const MessagesQuery = gql`
-    query MessagesQuery($matchId: ID!) {
-        messages(matchId: $matchId) {
+    query MessagesQuery($matchId: ID!, $cursor: String) {
+        messages(matchId: $matchId, cursor: $cursor) {
             id
             userId
             text
+            date
         }
     }
 `
@@ -26,6 +27,7 @@ export const MessagesSubscription = gql`
             id
             userId
             text
+            date
         }
     }
 `

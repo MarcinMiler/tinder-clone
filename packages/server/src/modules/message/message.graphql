@@ -1,5 +1,5 @@
 type Query {
-    messages(matchId: ID!): [Message]
+    messages(matchId: ID!, cursor: String): [Message]
 }
 
 type Mutation {

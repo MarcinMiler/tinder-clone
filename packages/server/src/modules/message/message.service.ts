@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Repository, LessThan, FindManyOptions } from 'typeorm'
 import { PubSub } from 'graphql-subscriptions'
 
 import { Message } from './message.entity'
@@ -14,8 +14,21 @@ export class MessageService {
         private readonly messageRepository: Repository<Message>
     ) {}
 
-    getByMatchId(matchId: number) {
-        return this.messageRepository.find({ where: { matchId } })
+    async getByMatchId(matchId: number, cursor: string) {
+        const options: FindManyOptions<Message> = {
+            where: { matchId },
+            order: { date: 'DESC' },
+            take: 30
+        }
+
+        if (cursor) {
+            options.where = {
+                matchId,
+                date: LessThan(cursor)
+            }
+        }
+
+        return await this.messageRepository.find(options)
     }
 
     async createMessage(message: MessageDto) {

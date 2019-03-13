@@ -11,7 +11,7 @@ export class Message {
     text: string
 
     @Column()
-    date: Date
+    date: string
 
     @Column()
     userId: number
@@ -26,6 +26,6 @@ export class Message {
         this.matchId = matchId
         this.userId = userId
         this.text = text
-        this.date = new Date()
+        this.date = `${new Date()}`
     }
 }

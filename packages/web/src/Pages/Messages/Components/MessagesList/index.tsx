@@ -9,6 +9,7 @@ import {
     MeQuery
 } from '../../../../GraphQl'
 import { Message } from '@tinder/components'
+import { Scroll } from './style'
 
 const url =
     'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/39603362_998758443629799_6345101288283308032_n.jpg?_nc_cat=100&_nc_ht=scontent-waw1-1.xx&oh=b9b43dcdddc56780453d955d601edc9f&oe=5D27D6EC'
@@ -16,15 +17,15 @@ const url =
 export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
     match: { params }
 }) => {
-    let ref: any
+    let scroll: any
 
     React.useEffect(() => {
-        if (ref) {
-            ref.scrollIntoView()
+        if (scroll) {
+            scroll.scrollTop = scroll.scrollHeight
         }
     })
 
-    const { data, loading } = useQuery(MessagesQuery, {
+    const { data, loading, fetchMore } = useQuery(MessagesQuery, {
         variables: { matchId: params.id },
         fetchPolicy: 'network-only'
     })
@@ -44,6 +45,7 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
                         id
                         userId
                         text
+                        date
                     }
                 }
             `
@@ -57,8 +59,8 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
                 variables: { matchId: params.id },
                 data: {
                     messages: [
-                        ...data.messages,
-                        subscriptionData.data.createdMessage
+                        subscriptionData.data.createdMessage,
+                        ...data.messages
                     ]
                 }
             })
@@ -69,9 +71,38 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
         return <p>loading...</p>
     }
 
+    const handleScroll = () => {
+        if (scroll.scrollTop !== 0) return
+
+        fetchMore({
+            variables: {
+                matchId: params.id,
+                cursor: data.messages[data.messages.length - 1].date
+            },
+            updateQuery: (previousResult, { fetchMoreResult }) => {
+                if (!fetchMoreResult) {
+                    return previousResult
+                }
+
+                return {
+                    ...previousResult,
+                    messages: [
+                        ...previousResult.messages,
+                        ...fetchMoreResult.messages
+                    ]
+                }
+            }
+        })
+    }
+
     return (
-        <>
-            {data.messages.map((msg: any, i: number) => (
+        <Scroll
+            ref={el => {
+                scroll = el
+            }}
+            onScroll={handleScroll}
+        >
+            {[...data.messages].reverse().map((msg: any, i: number) => (
                 <div key={i}>
                     <Message
                         url={url}
@@ -80,12 +111,7 @@ export const C: React.FC<RouteComponentProps<{ id: string }>> = ({
                     />
                 </div>
             ))}
-            <div
-                ref={el => {
-                    ref = el
-                }}
-            />
-        </>
+        </Scroll>
     )
 }
 

@@ -23,7 +23,7 @@ export const StyledInput = styled.input`
 `
 export const Button = styled.div`
     width: 70px;
-    height: 69px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

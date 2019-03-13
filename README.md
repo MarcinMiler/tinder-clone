@@ -16,7 +16,7 @@ Link to Storybook: [https://tinder-storybook.netlify.com](https://tinder-storybo
 -   [ ] Elasticsearch
 -   [ ] List of messages with pairs on sidebar
 -   [ ] Settings of profile (select age range, update profile)
--   [ ] Messages infinite loading
+-   [x] Messages infinite loading
 -   [ ] Elo score ranking
 -   [ ] Optimazation
 
